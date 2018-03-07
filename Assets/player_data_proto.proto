@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+message PlayerData {
+
+
+    string player_id = 1;
+    string display_name = 2;
+    int32 player_id_hash = 3;
+    string short_player_id = 4;
+    string firebase_uid = 5;
+
+    //For auto-login purpose. Do not use for attach online verification.
+    string email = 6;
+    string login_token = 7;
+
+    string start_playing = 8;
+    string last_updated = 9;
+
+}
