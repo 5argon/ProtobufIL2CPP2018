@@ -1,0 +1,6 @@
+syntax = "proto3";
+
+message AbsolutePosition
+{
+    int32 value_pt = 1;
+}

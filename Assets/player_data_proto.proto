@@ -16,4 +16,15 @@ message PlayerData {
     string start_playing = 8;
     string last_updated = 9;
 
+    repeated Inner repeated_inner = 10;
+
+}
+
+message Inner {
+    map<string, Innermost> map_innermost = 11;
+}
+
+message Innermost{
+    int32 integer = 1;
+    string string = 2;
 }

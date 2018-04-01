@@ -20,16 +20,22 @@ public static partial class PlayerDataProtoReflection {
   static PlayerDataProtoReflection() {
     byte[] descriptorData = global::System.Convert.FromBase64String(
         string.Concat(
-          "ChdwbGF5ZXJfZGF0YV9wcm90by5wcm90byLNAQoKUGxheWVyRGF0YRIRCglw",
+          "ChdwbGF5ZXJfZGF0YV9wcm90by5wcm90byLtAQoKUGxheWVyRGF0YRIRCglw",
           "bGF5ZXJfaWQYASABKAkSFAoMZGlzcGxheV9uYW1lGAIgASgJEhYKDnBsYXll",
           "cl9pZF9oYXNoGAMgASgFEhcKD3Nob3J0X3BsYXllcl9pZBgEIAEoCRIUCgxm",
           "aXJlYmFzZV91aWQYBSABKAkSDQoFZW1haWwYBiABKAkSEwoLbG9naW5fdG9r",
           "ZW4YByABKAkSFQoNc3RhcnRfcGxheWluZxgIIAEoCRIUCgxsYXN0X3VwZGF0",
-          "ZWQYCSABKAliBnByb3RvMw=="));
+          "ZWQYCSABKAkSHgoOcmVwZWF0ZWRfaW5uZXIYCiADKAsyBi5Jbm5lciJ5CgVJ",
+          "bm5lchIvCg1tYXBfaW5uZXJtb3N0GAsgAygLMhguSW5uZXIuTWFwSW5uZXJt",
+          "b3N0RW50cnkaPwoRTWFwSW5uZXJtb3N0RW50cnkSCwoDa2V5GAEgASgJEhkK",
+          "BXZhbHVlGAIgASgLMgouSW5uZXJtb3N0OgI4ASIsCglJbm5lcm1vc3QSDwoH",
+          "aW50ZWdlchgBIAEoBRIOCgZzdHJpbmcYAiABKAliBnByb3RvMw=="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
-          new pbr::GeneratedClrTypeInfo(typeof(global::PlayerData), global::PlayerData.Parser, new[]{ "PlayerId", "DisplayName", "PlayerIdHash", "ShortPlayerId", "FirebaseUid", "Email", "LoginToken", "StartPlaying", "LastUpdated" }, null, null, null)
+          new pbr::GeneratedClrTypeInfo(typeof(global::PlayerData), global::PlayerData.Parser, new[]{ "PlayerId", "DisplayName", "PlayerIdHash", "ShortPlayerId", "FirebaseUid", "Email", "LoginToken", "StartPlaying", "LastUpdated", "RepeatedInner" }, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::Inner), global::Inner.Parser, new[]{ "MapInnermost" }, null, null, new pbr::GeneratedClrTypeInfo[] { null, }),
+          new pbr::GeneratedClrTypeInfo(typeof(global::Innermost), global::Innermost.Parser, new[]{ "Integer", "String" }, null, null, null)
         }));
   }
   #endregion
@@ -69,6 +75,7 @@ public sealed partial class PlayerData : pb::IMessage<PlayerData> {
     loginToken_ = other.loginToken_;
     startPlaying_ = other.startPlaying_;
     lastUpdated_ = other.lastUpdated_;
+    repeatedInner_ = other.repeatedInner_.Clone();
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -178,6 +185,16 @@ public sealed partial class PlayerData : pb::IMessage<PlayerData> {
     }
   }
 
+  /// <summary>Field number for the "repeated_inner" field.</summary>
+  public const int RepeatedInnerFieldNumber = 10;
+  private static readonly pb::FieldCodec<global::Inner> _repeated_repeatedInner_codec
+      = pb::FieldCodec.ForMessage(82, global::Inner.Parser);
+  private readonly pbc::RepeatedField<global::Inner> repeatedInner_ = new pbc::RepeatedField<global::Inner>();
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public pbc::RepeatedField<global::Inner> RepeatedInner {
+    get { return repeatedInner_; }
+  }
+
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   public override bool Equals(object other) {
     return Equals(other as PlayerData);
@@ -200,6 +217,7 @@ public sealed partial class PlayerData : pb::IMessage<PlayerData> {
     if (LoginToken != other.LoginToken) return false;
     if (StartPlaying != other.StartPlaying) return false;
     if (LastUpdated != other.LastUpdated) return false;
+    if(!repeatedInner_.Equals(other.repeatedInner_)) return false;
     return true;
   }
 
@@ -215,6 +233,7 @@ public sealed partial class PlayerData : pb::IMessage<PlayerData> {
     if (LoginToken.Length != 0) hash ^= LoginToken.GetHashCode();
     if (StartPlaying.Length != 0) hash ^= StartPlaying.GetHashCode();
     if (LastUpdated.Length != 0) hash ^= LastUpdated.GetHashCode();
+    hash ^= repeatedInner_.GetHashCode();
     return hash;
   }
 
@@ -261,6 +280,7 @@ public sealed partial class PlayerData : pb::IMessage<PlayerData> {
       output.WriteRawTag(74);
       output.WriteString(LastUpdated);
     }
+    repeatedInner_.WriteTo(output, _repeated_repeatedInner_codec);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -293,6 +313,7 @@ public sealed partial class PlayerData : pb::IMessage<PlayerData> {
     if (LastUpdated.Length != 0) {
       size += 1 + pb::CodedOutputStream.ComputeStringSize(LastUpdated);
     }
+    size += repeatedInner_.CalculateSize(_repeated_repeatedInner_codec);
     return size;
   }
 
@@ -328,6 +349,7 @@ public sealed partial class PlayerData : pb::IMessage<PlayerData> {
     if (other.LastUpdated.Length != 0) {
       LastUpdated = other.LastUpdated;
     }
+    repeatedInner_.Add(other.repeatedInner_);
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -372,6 +394,264 @@ public sealed partial class PlayerData : pb::IMessage<PlayerData> {
         }
         case 74: {
           LastUpdated = input.ReadString();
+          break;
+        }
+        case 82: {
+          repeatedInner_.AddEntriesFrom(input, _repeated_repeatedInner_codec);
+          break;
+        }
+      }
+    }
+  }
+
+}
+
+public sealed partial class Inner : pb::IMessage<Inner> {
+  private static readonly pb::MessageParser<Inner> _parser = new pb::MessageParser<Inner>(() => new Inner());
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pb::MessageParser<Inner> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::PlayerDataProtoReflection.Descriptor.MessageTypes[1]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public Inner() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public Inner(Inner other) : this() {
+    mapInnermost_ = other.mapInnermost_.Clone();
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public Inner Clone() {
+    return new Inner(this);
+  }
+
+  /// <summary>Field number for the "map_innermost" field.</summary>
+  public const int MapInnermostFieldNumber = 11;
+  private static readonly pbc::MapField<string, global::Innermost>.Codec _map_mapInnermost_codec
+      = new pbc::MapField<string, global::Innermost>.Codec(pb::FieldCodec.ForString(10), pb::FieldCodec.ForMessage(18, global::Innermost.Parser), 90);
+  private readonly pbc::MapField<string, global::Innermost> mapInnermost_ = new pbc::MapField<string, global::Innermost>();
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public pbc::MapField<string, global::Innermost> MapInnermost {
+    get { return mapInnermost_; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override bool Equals(object other) {
+    return Equals(other as Inner);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool Equals(Inner other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (!MapInnermost.Equals(other.MapInnermost)) return false;
+    return true;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override int GetHashCode() {
+    int hash = 1;
+    hash ^= MapInnermost.GetHashCode();
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void WriteTo(pb::CodedOutputStream output) {
+    mapInnermost_.WriteTo(output, _map_mapInnermost_codec);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int CalculateSize() {
+    int size = 0;
+    size += mapInnermost_.CalculateSize(_map_mapInnermost_codec);
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(Inner other) {
+    if (other == null) {
+      return;
+    }
+    mapInnermost_.Add(other.mapInnermost_);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(pb::CodedInputStream input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          input.SkipLastField();
+          break;
+        case 90: {
+          mapInnermost_.AddEntriesFrom(input, _map_mapInnermost_codec);
+          break;
+        }
+      }
+    }
+  }
+
+}
+
+public sealed partial class Innermost : pb::IMessage<Innermost> {
+  private static readonly pb::MessageParser<Innermost> _parser = new pb::MessageParser<Innermost>(() => new Innermost());
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pb::MessageParser<Innermost> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::PlayerDataProtoReflection.Descriptor.MessageTypes[2]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public Innermost() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public Innermost(Innermost other) : this() {
+    integer_ = other.integer_;
+    string_ = other.string_;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public Innermost Clone() {
+    return new Innermost(this);
+  }
+
+  /// <summary>Field number for the "integer" field.</summary>
+  public const int IntegerFieldNumber = 1;
+  private int integer_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int Integer {
+    get { return integer_; }
+    set {
+      integer_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "string" field.</summary>
+  public const int StringFieldNumber = 2;
+  private string string_ = "";
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public string String {
+    get { return string_; }
+    set {
+      string_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override bool Equals(object other) {
+    return Equals(other as Innermost);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public bool Equals(Innermost other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (Integer != other.Integer) return false;
+    if (String != other.String) return false;
+    return true;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (Integer != 0) hash ^= Integer.GetHashCode();
+    if (String.Length != 0) hash ^= String.GetHashCode();
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void WriteTo(pb::CodedOutputStream output) {
+    if (Integer != 0) {
+      output.WriteRawTag(8);
+      output.WriteInt32(Integer);
+    }
+    if (String.Length != 0) {
+      output.WriteRawTag(18);
+      output.WriteString(String);
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public int CalculateSize() {
+    int size = 0;
+    if (Integer != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeInt32Size(Integer);
+    }
+    if (String.Length != 0) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(String);
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(Innermost other) {
+    if (other == null) {
+      return;
+    }
+    if (other.Integer != 0) {
+      Integer = other.Integer;
+    }
+    if (other.String.Length != 0) {
+      String = other.String;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  public void MergeFrom(pb::CodedInputStream input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          input.SkipLastField();
+          break;
+        case 8: {
+          Integer = input.ReadInt32();
+          break;
+        }
+        case 18: {
+          String = input.ReadString();
           break;
         }
       }
